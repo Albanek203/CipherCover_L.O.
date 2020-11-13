@@ -1,2 +1,2 @@
-# CipherCover_L.O.
+# CipherCover_LO
 Lab_5
