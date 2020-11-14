@@ -9,6 +9,9 @@ public:
 	~CWorkspace(void) {}
 
 	const char* GetChainString() { return m_refChain.GetFullString(); }
+	void Init(int nDepth, int nLength) {
+		m_refChain.Generate(nDepth, nLength);
+	}
 	bool Save(string& sFilepath) {
 		ofstream outfile(sFilepath, fstream::app);
 		outfile << GetChainString() << endl;
