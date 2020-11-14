@@ -28,10 +28,12 @@ protected:
 class CDataSimple : public CDataChain {
 public:
 	void Generate(int nDepth, int nMaxLength = 0) override {
+		string gen = "";
 		for (int iter = 0; iter <= nDepth; iter++) {
-			if (size(m_sChain) >= nMaxLength) { break; }
-			m_sChain += to_string(iter);
+			if (size(gen) > nMaxLength) { break; }
+			gen += to_string(iter);
 		}
+		m_sChain += gen + "\n";
 	}
 	const char* GetFullString() override { return m_sChain.c_str(); }
 	void Assignment(string str) { m_sChain = str; }
