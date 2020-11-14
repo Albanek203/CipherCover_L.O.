@@ -1,41 +1,38 @@
-#include "CWorkspace.cpp"
+#include <iostream>
+#include <string>
 #include "CDlgCommand.cpp"
 using namespace std;
 
-#define EXTENSION() (".txt")
+#define EXTENSION (".txt")
 
 void Init(CWorkspace& ws) {
 	int Depth, Lengh;
 	cout << "Enter Depth:";
 	cin >> Depth;
 	cout << "Enter Lengh:";
+	cin >> Lengh;
 	ws.Init(Depth, Lengh);
 }
 void Save(CWorkspace& ws) {
 	string name_file;
 	cout << "Enter a name for the file where the data will be stored:";
 	cin >> name_file;
-	name_file += EXTENSION();
-	cout << ws.Save(name_file)<<endl;
+	name_file += EXTENSION;
+	if (ws.Save(name_file)) { cout << "Ok!"; }
+	else { cout << "Error"; }
 }
 void Load(CWorkspace& ws) {
 	string name_file;
 	cout << "Enter the name of the file from which the data will be downloaded:";
 	cin >> name_file;
-	name_file += EXTENSION();
-	cout << ws.Load(name_file) << endl;
+	name_file += EXTENSION;
+	if (ws.Load(name_file)) { cout << "Ok!"; }
 }
 void ShowFullSequence(CWorkspace& ws) {
 	cout << ws.GetChainString() << endl;
 }
 
 int main(){
-	/*CDataSimple data;
-	data.Generate(2, 5);
-	CWorkspace ws(data);
-	string a = "text.txt";
-	ws.Save(a);
-	return 0;*/
 	CDataSimple data;
 	CWorkspace ws(data);
 	CDialogManager mgr(ws);
