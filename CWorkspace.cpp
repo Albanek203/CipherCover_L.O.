@@ -19,7 +19,7 @@ public:
 		outfile << strforsave << endl;
 		outfile << m_aLinks.size();
 		for (int iter = 0; iter <= m_aLinks.size(); iter++) {
-			*m_aLinks[iter]->Save(outfile);
+			m_aLinks[iter]->Save(outfile);
 		}
 		outfile.close();
 		return true;
@@ -42,6 +42,10 @@ public:
 	}
 	int Find(const char* sSubStr, int nPos = 0) {
 		return m_refChain.Find(sSubStr, nPos);
+	}
+	bool AddLink(int nStartPos, int nLength, CLink* pLink) {
+		pLink->Assignment_nPos_nSize(nStartPos, nLength);
+		return true;
 	}
 private:
 	//Зсилка на контейнер (породжений від CDataChain) із послідовністю
