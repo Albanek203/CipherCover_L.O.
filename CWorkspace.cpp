@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string> 
 #include <fstream>
-#include "CDataChain.cpp"
+#include "CLink.cpp"
 using namespace std;
 class CWorkspace {
 public:
@@ -13,8 +13,14 @@ public:
 		m_refChain.Generate(nDepth, nLength);
 	}
 	bool Save(string& sFilepath) {
+		string strforsave = GetChainString();
 		ofstream outfile(sFilepath, fstream::app);
-		outfile << GetChainString() << endl;
+		outfile << size(strforsave) << endl;
+		outfile << strforsave << endl;
+		outfile << m_aLinks.size();
+		for (int iter = 0; iter <= m_aLinks.size(); iter++) {
+			*m_aLinks[iter]->Save(outfile);
+		}
 		outfile.close();
 		return true;
 	}
@@ -40,4 +46,5 @@ public:
 private:
 	//Зсилка на контейнер (породжений від CDataChain) із послідовністю
 	CDataChain& m_refChain;
+	LinksArray m_aLinks;
 };
