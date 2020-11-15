@@ -13,7 +13,7 @@ public:
 
 	////повертаЇ позиц≥ю входженн€ п≥дстр≥чки sSubStr починаючи ≥з nPos.
 	//// -1, €кщо п≥дстр≥чки не знайдено
-	virtual int Find(const char* sSubStr, int nPos = 0);
+	virtual int Find(const char* sSubStr, int nPos = 0) = 0;
 
 	////повертаЇ п≥дстр≥чку починаючи ≥з nPos довжиною nLength. або до к≥нц€ посл≥довност≥
 	//virtual string GetSubStr(int nPos, int nLength = -1);
@@ -36,8 +36,11 @@ public:
 		m_sChain += gen + "\n";
 	}
 	const char* GetFullString() override { return m_sChain.c_str(); }
-	void Assignment(string str) { m_sChain = str; }
-	int Find(const char* sSubStr, int nPos = 0) {
-		return 1;
+	void Assignment(string str) override { m_sChain = str; }
+	int Find(const char* sSubStr, int nPos = 0) override {
+		string Sub = m_sChain;
+		Sub.erase(0, nPos);
+		if (Sub.find(sSubStr)) { return Sub.rfind(sSubStr) + nPos; }
+		else { return -1; }
 	}
 };

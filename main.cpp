@@ -34,11 +34,13 @@ void ShowFullSequence(CWorkspace& ws) {
 void Find(CWorkspace& ws) {
 	int nPos;
 	string str;
-	cout << "Enter string:";
+	cout << "Enter the ribbon we are looking for:";
 	cin >> str;
-	cout << "Enter pos:";
+	cout << "Indicate from which position we will start searching:";
 	cin >> nPos;
-	cout << ws.Find(str.c_str(), nPos);
+	int temp = ws.Find(str.c_str(), nPos);
+	if (temp == -1) { cout << "Unfortunately, there is no such tape"; }
+	else { cout << "The tape at position " << temp << " is required"; }
 }
 
 int main(){
