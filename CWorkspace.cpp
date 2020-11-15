@@ -34,6 +34,9 @@ public:
 			return true;
 		}
 	}
+	int Find(const char* sSubStr, int nPos = 0) {
+		return m_refChain.Find(sSubStr, nPos);
+	}
 private:
 	//Зсилка на контейнер (породжений від CDataChain) із послідовністю
 	CDataChain& m_refChain;

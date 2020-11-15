@@ -31,6 +31,15 @@ void Load(CWorkspace& ws) {
 void ShowFullSequence(CWorkspace& ws) {
 	cout << ws.GetChainString() << endl;
 }
+void Find(CWorkspace& ws) {
+	int nPos;
+	string str;
+	cout << "Enter string:";
+	cin >> str;
+	cout << "Enter pos:";
+	cin >> nPos;
+	cout << ws.Find(str.c_str(), nPos);
+}
 
 int main(){
 	CDataSimple data;
@@ -40,6 +49,7 @@ int main(){
 	mgr.RegisterCommand("Show sequence", ShowFullSequence);
 	mgr.RegisterCommand("Save", Save);
 	mgr.RegisterCommand("Load", Load);
+	mgr.RegisterCommand("Find", Find);
 	mgr.Run();
 	return 0;
 
