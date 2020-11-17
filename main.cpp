@@ -46,13 +46,17 @@ void Find(CWorkspace& ws) {
 int main(){
 	CDataSimple data;
 	CWorkspace ws(data);
-	CDialogManager mgr(ws);
+	/*CDialogManager mgr(ws);
 	mgr.RegisterCommand("Init sequence", Init);
 	mgr.RegisterCommand("Show sequence", ShowFullSequence);
 	mgr.RegisterCommand("Save", Save);
 	mgr.RegisterCommand("Load", Load);
-	mgr.RegisterCommand("Find", Find);
-	mgr.Run();
+	mgr.RegisterCommand("Find", Find);*/
+	/*mgr.Run();*/
+	
+	Init(ws);
+	ws.AddLink(5, 10,new CLink(data));
+	Save(ws);
 	return 0;
 
 }
