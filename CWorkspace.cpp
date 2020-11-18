@@ -42,24 +42,25 @@ public:
 				}
 				if (rout==2) { rstr += arr + "\n"; }
 				if (rout == 3) { 
-					for (i = 0; i < size(arr) - 1; i++) { size_Links += arr[i]; } 
+					for (i = 0; i < size(arr); i++) { size_Links += arr[i]; } 
 					many_Links = atoi(size_Links.c_str());
-				}
+				}		
 				if (rout >= 4) {
 					i = 5;
 					while (arr[i] != ' ') { str_size += arr[i]; i++; }
 					arr.erase(0, i + 5);
 					i = 0;
 					while (isdigit(arr[i])) { str_pos += arr[i]; i++; }
-				}
-				for (int jter = 0; jter < many_Links; jter++) {
-					AddLink(atoi(str_pos.c_str()), atoi(str_size.c_str()),new CLink(m_refChain));
-					str_size = "", str_pos = "";
+					for (int jter = 0; jter < many_Links; jter++) {
+						if (str_size == "") { continue; }
+						CDataSimple Das;
+						AddLink(atoi(str_pos.c_str()), atoi(str_size.c_str()), new CLink(Das));
+						str_size = "", str_pos = "";
+					}
 				}
 				rout++;
-			}			
+			}
 			m_refChain.Assignment(rstr);
-			m_aLinks[0]->Get_nPosAND_nSize();
 			infail.close();
 			return true;
 		}

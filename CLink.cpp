@@ -24,7 +24,7 @@ public:
 		m_nSize = nSize;
 	}
 	void Get_nPosAND_nSize() {
-		cout << "Size: " << m_nSize << " Pos: " << m_nPos<< endl;
+		cout << "Size:" << m_nSize << " Pos:" << m_nPos<< endl;
 	}
 protected:
 	//Посилання на контейнер з повною послідовністю
