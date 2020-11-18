@@ -31,6 +31,10 @@ void Load(CWorkspace& ws) {
 void ShowFullSequence(CWorkspace& ws) {
 	cout << ws.GetChainString() << endl;
 }
+void ShowAllLinks(CWorkspace& ws){
+	ws.ShowAllLinks();
+}
+
 void Find(CWorkspace& ws) {
 	int nPos;
 	string str;
@@ -46,19 +50,14 @@ void Find(CWorkspace& ws) {
 int main(){
 	CDataSimple data;
 	CWorkspace ws(data);
-	/*CDialogManager mgr(ws);
+	CDialogManager mgr(ws);
 	mgr.RegisterCommand("Init sequence", Init);
 	mgr.RegisterCommand("Show sequence", ShowFullSequence);
+	mgr.RegisterCommand("Show links", ShowAllLinks);
 	mgr.RegisterCommand("Save", Save);
 	mgr.RegisterCommand("Load", Load);
-	mgr.RegisterCommand("Find", Find);*/
-	/*mgr.Run();*/
-	cout << "Daedwddsddfsdddddsdddddd sdsddddww\n";
-	
-	Load(ws);
-	ShowFullSequence(ws);
-	ws.AddLink(10, 10, new CLink(data));
-	ws.ShowAllLinks();
+	mgr.RegisterCommand("Find", Find);
+	mgr.Run();
 	return 0;
 
 }
