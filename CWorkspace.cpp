@@ -14,11 +14,10 @@ public:
 	}
 	bool Save(string& sFilepath) {
 		string strforsave = GetChainString();
-		cout << strforsave;
 		ofstream outfile(sFilepath, fstream::app);
 		outfile << size(strforsave) - 1 << endl;
-		outfile << strforsave << endl;
-		outfile << m_aLinks.size();
+		outfile << GetChainString();
+		outfile << m_aLinks.size() << endl;
 		for (int iter = 0; iter < m_aLinks.size(); iter++) {
 			m_aLinks[iter]->Save(outfile);
 		}
@@ -26,18 +25,41 @@ public:
 		return true;
 	}
 	bool Load(string& sFilepath) {
-		ifstream infail; 
+		ifstream infail;
 		infail.open(sFilepath);
 
 		if (!infail.is_open()) { cout << "Error. Fail is not open."; return false; }
 		else {
-			string arr, rstr;
+			int rout = 1, many_Links = 0,i;
+			string arr, rstr, str_size = "", str_pos = "", size_Links = "";
 			while (!infail.eof()) {
-				getline(infail, arr);				
-				rstr += arr + "\n";
-
-			}
+				getline(infail, arr);	
+				if (rout == 5) {
+					if (arr[0] != 'S') {
+						rout = 1;
+						many_Links = 0;
+					}
+				}
+				if (rout==2) { rstr += arr + "\n"; }
+				if (rout == 3) { 
+					for (i = 0; i < size(arr) - 1; i++) { size_Links += arr[i]; } 
+					many_Links = atoi(size_Links.c_str());
+				}
+				if (rout >= 4) {
+					i = 5;
+					while (arr[i] != ' ') { str_size += arr[i]; i++; }
+					arr.erase(0, i + 5);
+					i = 0;
+					while (isdigit(arr[i])) { str_pos += arr[i]; i++; }
+				}
+				for (int jter = 0; jter < many_Links; jter++) {
+					AddLink(atoi(str_pos.c_str()), atoi(str_size.c_str()),new CLink(m_refChain));
+					str_size = "", str_pos = "";
+				}
+				rout++;
+			}			
 			m_refChain.Assignment(rstr);
+			m_aLinks[0]->Get_nPosAND_nSize();
 			infail.close();
 			return true;
 		}
@@ -47,6 +69,7 @@ public:
 	}
 	bool AddLink(int nStartPos, int nLength, CLink* pLink) {
 		pLink->Assignment_nPos_nSize(nStartPos, nLength);
+		m_aLinks.push_back(pLink);
 		return true;
 	}
 	bool RemoveLink(int nPosInList) {

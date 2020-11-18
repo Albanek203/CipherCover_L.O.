@@ -53,10 +53,11 @@ int main(){
 	mgr.RegisterCommand("Load", Load);
 	mgr.RegisterCommand("Find", Find);*/
 	/*mgr.Run();*/
+	cout << "Daedwddsssdsdddww\n";
 	
-	Init(ws);
-	ws.AddLink(5, 10,new CLink(data));
-	Save(ws);
+	Load(ws);
+	ShowFullSequence(ws);
+	ws.ShowAllLinks();
 	return 0;
 
 }
