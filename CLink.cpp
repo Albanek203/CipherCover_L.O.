@@ -1,4 +1,4 @@
-#include "CDataChain.cpp"
+#include "CDataChain.h"
 #include <vector>
 class CLink {
 public:
@@ -8,8 +8,6 @@ public:
 		so << "Size:" << m_nSize << " Pos:" << m_nPos;
 		return true;
 	}
-
-	//«читуЇ об"Їкт ≥з вх≥дного потоку
 	virtual bool Load(istream& is) { 
 		string arr,value = "";
 		int i = 5;

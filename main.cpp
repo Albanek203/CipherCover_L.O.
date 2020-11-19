@@ -116,5 +116,6 @@ int main(){
 	mgr.RegisterCommand("Save", Save);
 	mgr.RegisterCommand("Load", Load);	
 	mgr.Run();
+	cout << "ss";
 	return 0;
 }
