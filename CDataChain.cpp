@@ -6,6 +6,7 @@ class CDataChain {
 public:
 	CDataChain(void) {}
 	virtual ~CDataChain(void) {}
+	virtual size_t GetLength() = 0;
 	virtual void Generate(int nDepth, int nMaxLength = 0) = 0;
 	virtual int Find(const char* sSubStr, int nPos = 0) = 0;
 	virtual const char* GetFullString() = 0;
@@ -22,7 +23,7 @@ public:
 			if (size(gen) > nMaxLength) { break; }
 			gen += to_string(iter);
 		}
-		m_sChain += gen + "\n";
+		m_sChain = gen + "\n";
 	}
 	const char* GetFullString() override { return m_sChain.c_str(); }
 	void Assignment(string str) override { m_sChain = str; }
@@ -32,4 +33,5 @@ public:
 		if (Sub.find(sSubStr)) { return Sub.rfind(sSubStr) + nPos; }
 		else { return -1; }
 	}
+	size_t GetLength() override { return size(m_sChain); }
 };

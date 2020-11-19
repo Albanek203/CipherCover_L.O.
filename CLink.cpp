@@ -31,6 +31,7 @@ public:
 	void Get_nPosAND_nSize() {
 		cout << "Size:" << m_nSize << " Pos:" << m_nPos<< endl;
 	}
+	int Take_nPos() { return m_nPos; }
 protected:
 	CDataChain& m_refChain;
 	int m_nPos;

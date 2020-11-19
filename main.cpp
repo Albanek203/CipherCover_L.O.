@@ -68,7 +68,7 @@ void AddPerson(CWorkspace& ws) {
 	else { cout << "The index has gone beyond\n"; }
 }
 
-void  AddURL(CWorkspace& ws) {
+void AddURL(CWorkspace& ws) {
 	string sSubStr, sURL;
 	cout << "Enter string:";
 	cin >> sSubStr;
@@ -76,6 +76,31 @@ void  AddURL(CWorkspace& ws) {
 	cin >> sURL;
 	if (ws.AddURL(sSubStr.c_str(), sURL.c_str())) { cout << "Ok!\n"; }
 	else { cout << "The index has gone beyond\n"; }
+}
+
+void TestPosition(CWorkspace& ws) {
+	int nPos;
+	LinksArray aNearestLinks;
+	cout << "Enter position:";
+	cin >> nPos;
+	if (ws.TestPosition(nPos, aNearestLinks)) {
+		cout << "The position is included " << aNearestLinks.size() << " links.\n";
+	}
+	else { cout << "We did not find any links.\n"; }
+}
+
+void TestInterval(CWorkspace& ws) {
+	int nStartPos, nEndPos;
+	LinksArray aNearestLinks;
+	cout << "Enter start position:";
+	cin >> nStartPos;
+	cout << "Enter end position";
+	cin >> nEndPos;
+	if (ws.TestInterval(nStartPos, nEndPos, aNearestLinks)) {
+		cout << "The position is included " << aNearestLinks.size() << " links.";
+		cout << "\nin the range from " << nStartPos << " to " << nEndPos << endl;
+	}
+	else { cout << "We did not find any links.\nin the range from " << nStartPos << " to " << nEndPos << endl; }
 }
 int main(){
 	CDataSimple data;
@@ -87,10 +112,11 @@ int main(){
 	mgr.RegisterCommand("Add person", AddPerson);
 	mgr.RegisterCommand("Add link",AddURL);
 	mgr.RegisterCommand("Remove link", RemoveLink);
+	mgr.RegisterCommand("Test position", TestPosition);
+	mgr.RegisterCommand("Test interval", TestInterval);
 	mgr.RegisterCommand("Find", Find);
 	mgr.RegisterCommand("Save", Save);
 	mgr.RegisterCommand("Load", Load);	
 	mgr.Run();
 	return 0;
-
 }

@@ -1,6 +1,4 @@
-#include <iostream>
 #include "CWorkspace.cpp"
-#include <vector>
 using namespace  std;
 typedef void (*ptDlgCommandFunc)(CWorkspace& ws);
 
