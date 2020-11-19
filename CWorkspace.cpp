@@ -30,37 +30,31 @@ public:
 
 		if (!infail.is_open()) { cout << "Error. Fail is not open."; return false; }
 		else {
-			int rout = 1, many_Links = 0,i;
-			string arr, rstr, str_size = "", str_pos = "", size_Links = "";
+			int rout = 1, many_Links = 0,i=0;
+			string arr, resultstr, size_Links = "";
 			while (!infail.eof()) {
 				getline(infail, arr);	
 				if (rout == 5) {
 					if (arr[0] != 'S') {
 						rout = 1;
 						many_Links = 0;
+						i = 0;
 					}
 				}
-				if (rout==2) { rstr += arr + "\n"; }
-				if (rout == 3) { 
-					for (i = 0; i < size(arr); i++) { size_Links += arr[i]; } 
-					many_Links = atoi(size_Links.c_str());
-				}		
-				if (rout >= 4) {
-					i = 5;
-					while (arr[i] != ' ') { str_size += arr[i]; i++; }
-					arr.erase(0, i + 5);
-					i = 0;
-					while (isdigit(arr[i])) { str_pos += arr[i]; i++; }
-					for (int jter = 0; jter < many_Links; jter++) {
-						if (str_size == "") { continue; }
-						CDataSimple Das;
-						AddLink(atoi(str_pos.c_str()), atoi(str_size.c_str()), new CLink(Das));
-						str_size = "", str_pos = "";
+				if (rout == 2) { resultstr += arr + "\n"; }
+				if (rout >= 3) {
+					if (rout == 3) {
+						for (i = 0; i < size(arr); i++) { size_Links += arr[i]; }
+						many_Links = atoi(size_Links.c_str());
 					}
-				}
+					for (int iter = 0; iter < many_Links; iter++) {
+						AddLink(0, 0, new CLink(m_refChain));
+						m_aLinks[iter]->Load(infail);
+					}
+				}				
 				rout++;
 			}
-			m_refChain.Assignment(rstr);
+			m_refChain.Assignment(m_refChain.GetFullString() + resultstr);
 			infail.close();
 			return true;
 		}
