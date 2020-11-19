@@ -1,4 +1,3 @@
-#include <fstream>
 #include "CLink.cpp"
 using namespace std;
 class CWorkspace {

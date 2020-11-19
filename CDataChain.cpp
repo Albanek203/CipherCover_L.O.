@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string> 
-
+#include <fstream>
+#include <iomanip>
 using namespace std;
 class CDataChain {
 public:
@@ -34,4 +35,22 @@ public:
 		else { return -1; }
 	}
 	size_t GetLength() override { return size(m_sChain); }
+};
+
+class CDataPi :public CDataChain {
+public:
+	void Generate(int nDepth, int nMaxLenght = 0) override {
+		ifstream temp_r;
+		ofstream temp_w;
+		string str;
+		temp_w.open("temp.txt");
+		temp_w << setprecision(nMaxLenght) << 4. * atan(1.);
+		temp_w.close();
+		temp_r.open("temp.txt");
+		getline(temp_r, str);
+		temp_r.close();
+		remove("temp.txt");
+		str.erase(str.find('.'), 1);
+		m_sChain = str + "\n";
+	}
 };

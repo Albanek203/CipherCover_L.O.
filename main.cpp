@@ -1,5 +1,3 @@
-#include <iostream>
-#include <string>
 #include "CDlgCommand.cpp"
 using namespace std;
 
