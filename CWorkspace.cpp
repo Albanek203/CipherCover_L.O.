@@ -1,5 +1,3 @@
-#include <iostream>
-#include <string> 
 #include <fstream>
 #include "CLink.cpp"
 using namespace std;
@@ -13,9 +11,8 @@ public:
 		m_refChain.Generate(nDepth, nLength);
 	}
 	bool Save(string& sFilepath) {
-		string strforsave = GetChainString();
 		ofstream outfile(sFilepath, fstream::app);
-		outfile << size(strforsave) - 1 << endl;
+		outfile << m_refChain.GetLength() - 1 << endl;
 		outfile << GetChainString();
 		outfile << m_aLinks.size() << endl;
 		for (int iter = 0; iter < m_aLinks.size(); iter++) {
@@ -105,7 +102,24 @@ public:
 		return true;
 	}
 	bool TestPosition(int nPos, LinksArray& aNearestLinks) {
-		
+		if (nPos < 0 || nPos > m_aLinks.size()) { return false; }
+		for (int iter = 0; iter < m_aLinks.size(); iter++) {
+			if (m_aLinks[iter]->Take_nPos() == nPos) {
+				aNearestLinks.push_back(m_aLinks[iter]);
+			}
+		}
+		return true;
+	}
+	bool TestInterval(int nStartPos, int nEndPos, LinksArray& aNearestLinks) {
+		if (nStartPos<0 || nStartPos >  nEndPos || nStartPos > m_refChain.GetLength()) {
+			return false;
+		}
+		for (int iter = 0; iter < m_aLinks.size(); iter++) {
+			if (nStartPos <= m_aLinks[iter]->Take_nPos() <= nEndPos) {
+				aNearestLinks.push_back(m_aLinks[iter]);
+			}
+		}
+		return true;
 	}
 
 private:
