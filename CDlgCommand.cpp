@@ -1,4 +1,4 @@
-#include "CWorkspace.h"
+#include "CDlgCommand.h"
 using namespace  std;
 typedef void (*ptDlgCommandFunc)(CWorkspace& ws);
 

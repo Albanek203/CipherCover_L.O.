@@ -3,6 +3,7 @@
 #include <string> 
 #include <fstream>
 #include <iomanip>
+#include <vector>
 using namespace std;
 class CDataChain {
 public:

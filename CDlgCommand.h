@@ -1,10 +1,9 @@
 #pragma once
-#include "CWorkspace.cpp"
+#include "CWorkspace.h"
 using namespace  std;
 typedef void (*ptDlgCommandFunc)(CWorkspace& ws);
 
-class CDlgCommand
-{
+class CDlgCommand {
 public:
 	CDlgCommand(const char* sName, ptDlgCommandFunc pFunc = NULL);
 	~CDlgCommand(void);
@@ -18,7 +17,6 @@ class CDialogManager {
 public:
 	CDialogManager(CWorkspace& ws);
 	~CDialogManager(void);
-
 	void RegisterCommand(const char* sName, ptDlgCommandFunc pFunc);
 	void Run();
 private:

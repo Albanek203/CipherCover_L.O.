@@ -1,4 +1,4 @@
-#include "CLink.h"
+#include "CWorkspace.h"
 using namespace std;
 class CWorkspace {
 public:

@@ -1,7 +1,4 @@
-#include <iostream>
-#include <string> 
-#include <fstream>
-#include <iomanip>
+#include "CDataChain.h"
 using namespace std;
 class CDataChain {
 public:

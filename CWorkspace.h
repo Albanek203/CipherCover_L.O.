@@ -1,5 +1,6 @@
 #pragma once
-#include "CLink.cpp"
+#include "CLink.h"
+#include "CDataChain.h"
 using namespace std;
 class CWorkspace {
 public:

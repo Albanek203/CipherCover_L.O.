@@ -1,4 +1,4 @@
-#include "CDlgCommand.cpp"
+#include "CDlgCommand.h"
 using namespace std;
 
 #define EXTENSION (".txt")
@@ -116,6 +116,6 @@ int main(){
 	mgr.RegisterCommand("Save", Save);
 	mgr.RegisterCommand("Load", Load);	
 	mgr.Run();
-	cout << "ss";
+	cout << "sfdsf";
 	return 0;
 }

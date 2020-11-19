@@ -1,5 +1,4 @@
-#include "CDataChain.h"
-#include <vector>
+#include "CLink.h"
 class CLink {
 public:
 	CLink(CDataChain& refChain) :m_refChain(refChain) {}

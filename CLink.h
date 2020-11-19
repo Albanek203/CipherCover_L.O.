@@ -1,6 +1,5 @@
 #pragma once
-#include "CDataChain.cpp"
-#include <vector>
+#include "CDataChain.h"
 class CLink {
 public:
 	CLink(CDataChain& refChain);
@@ -34,5 +33,4 @@ public:
 private:
 	int m_nGroupCode;
 	string m_sName;
-
 };
