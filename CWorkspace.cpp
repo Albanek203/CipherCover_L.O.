@@ -83,9 +83,32 @@ public:
 			m_aLinks[iter]->Get_nPosAND_nSize();
 		}
 	}
+	bool AddURL(const char* sSubStr, const char* sURL) {
+		CLinkURL* newurl = new CLinkURL(m_refChain);
+		string string_SubStr = sSubStr;
+		int place = m_refChain.Find(sSubStr);
+		if (place == -1) { return  false; }
+		newurl->Add_URL(sURL);
+		newurl->Assignment_nPos_nSize(place, size(string_SubStr));
+		m_aLinks.push_back(newurl);
+		return true;
+	}
+	bool AddPerson(const char* sSubStr, int nGroup, const char* sName) {
+		CLinkPerson* newperson = new CLinkPerson(m_refChain);
+		string string_SubStr = sSubStr;
+		int place = m_refChain.Find(sSubStr);
+		if (place == -1) { return  false; }
+		newperson->Assignment_nPos_nSize(place, size(string_SubStr));
+		newperson->AssigmentGroup(nGroup);
+		newperson->AssigmentName(sName);
+		m_aLinks.push_back(newperson);
+		return true;
+	}
+	bool TestPosition(int nPos, LinksArray& aNearestLinks) {
+		
+	}
 
 private:
-	//Зсилка на контейнер (породжений від CDataChain) із послідовністю
 	CDataChain& m_refChain;
 	LinksArray m_aLinks;
 };

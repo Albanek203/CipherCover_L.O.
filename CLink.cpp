@@ -3,14 +3,7 @@
 class CLink {
 public:
 	CLink(CDataChain& refChain) :m_refChain(refChain) {}
-	/*virtual ~CLink(void);*/
-
-	////Пробує прив"язати об"єкт до підстрічки у послідовності
-	//bool Attach(const char* sSubStr);
-
-	////Форматований вивід на консоль
-	//virtual void Output(ostream& os);
-
+	virtual ~CLink(void) {}
 	virtual bool Save(ostream& so) {
 		so << "Size:" << m_nSize << " Pos:" << m_nPos;
 		return true;
@@ -39,11 +32,28 @@ public:
 		cout << "Size:" << m_nSize << " Pos:" << m_nPos<< endl;
 	}
 protected:
-	//Посилання на контейнер з повною послідовністю
 	CDataChain& m_refChain;
-	//Позиція початку у повній послідовності
 	int m_nPos;
-	//Довжина підстрічки, до якої прив"язується об"єкт
 	int m_nSize;
 };
 typedef vector<CLink*> LinksArray;
+
+class CLinkURL : public CLink {
+public:
+	CLinkURL(CDataChain& refChain) :CLink(refChain) {}
+	virtual ~CLinkURL(void) {}
+	void Add_URL(const char* str) { m_sURL = str; }
+private:
+	string m_sURL;
+};
+class CLinkPerson : public CLink {
+public:
+	CLinkPerson(CDataChain& refChain) :CLink(refChain) {}
+	virtual ~CLinkPerson(void) {}
+	void AssigmentGroup(int member) { m_nGroupCode = member; }
+	void AssigmentName(string name) { m_sName = name; }
+private:
+	int m_nGroupCode;
+	string m_sName;
+
+};
