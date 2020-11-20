@@ -1,14 +1,14 @@
 #pragma once
 #include "CLink.h"
 #include "CDataChain.h"
-using namespace std;
 class CWorkspace {
 public:
 	CWorkspace(CDataChain& data);
 	~CWorkspace(void);
 
 	const char* GetChainString();
-	void Init(int nDepth, int nLength);
+	void Init(int nDepth, int nLength); 
+	void Init_by_PI(int nLength);
 	bool Save(string& sFilepath);
 	bool Load(string& sFilepath);
 	int Find(const char* sSubStr, int nPos = 0);
@@ -21,6 +21,7 @@ public:
 	bool TestPosition(int nPos, LinksArray& aNearestLinks);
 	bool TestInterval(int nStartPos, int nEndPos, LinksArray& aNearestLinks);
 private:
+	CDataPi m_refPI;
 	CDataChain& m_refChain;
 	LinksArray m_aLinks;
 };

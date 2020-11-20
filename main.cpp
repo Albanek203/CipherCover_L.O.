@@ -1,6 +1,4 @@
 #include "CDlgCommand.h"
-using namespace std;
-
 #define EXTENSION (".txt")
 
 void Init(CWorkspace& ws) {
@@ -10,6 +8,12 @@ void Init(CWorkspace& ws) {
 	cout << "Enter Lengh:";
 	cin >> Lengh;
 	ws.Init(Depth, Lengh);
+}
+void Init_by_PI(CWorkspace& ws) {
+	int Lengh;
+	cout << "Enter Lengh:";
+	cin >> Lengh;
+	ws.Init_by_PI(Lengh);
 }
 void Save(CWorkspace& ws) {
 	string name_file;
@@ -105,6 +109,7 @@ int main(){
 	CWorkspace ws(data);
 	CDialogManager mgr(ws);
 	mgr.RegisterCommand("Init sequence", Init);
+	mgr.RegisterCommand("Init PI sequence", Init_by_PI);
 	mgr.RegisterCommand("Show sequence", ShowFullSequence);
 	mgr.RegisterCommand("Show links", ShowAllLinks);
 	mgr.RegisterCommand("Add person", AddPerson);
@@ -114,8 +119,7 @@ int main(){
 	mgr.RegisterCommand("Test interval", TestInterval);
 	mgr.RegisterCommand("Find", Find);
 	mgr.RegisterCommand("Save", Save);
-	mgr.RegisterCommand("Load", Load);	
+	mgr.RegisterCommand("Load", Load);
 	mgr.Run();
-	cout << "sfdsf";
 	return 0;
 }

@@ -1,50 +1,33 @@
 #include "CDlgCommand.h"
-using namespace  std;
+
 typedef void (*ptDlgCommandFunc)(CWorkspace& ws);
 
-class CDlgCommand
-{
-public:
-	CDlgCommand(const char* sName, ptDlgCommandFunc pFunc = NULL) {
-		m_sName = sName;
-		m_pFunc = pFunc;
-	}
-	~CDlgCommand(void) {}
-	const char* GetName() { return m_sName.c_str(); }
-	void Run(CWorkspace& ws) {
-		m_pFunc(ws);
-	}
-private:
-	string m_sName;
-	ptDlgCommandFunc m_pFunc;
-};
-class CDialogManager {
-public:
-	CDialogManager(CWorkspace& ws):m_refWorkspace(ws){
-		m_aCommands.push_back(new CDlgCommand ("Quit"));
-	}
+CDlgCommand::CDlgCommand(const char* sName, ptDlgCommandFunc pFunc) {
+	m_sName = sName;
+	m_pFunc = pFunc;
+}
+CDlgCommand::~CDlgCommand(void) {}
+const char* CDlgCommand::GetName() { return m_sName.c_str(); }
+void CDlgCommand::Run(CWorkspace& ws) {	m_pFunc(ws); }
 
-	~CDialogManager(void) {}
-
-	void RegisterCommand(const char* sName, ptDlgCommandFunc pFunc) {
-		m_aCommands.push_back(new CDlgCommand(sName, pFunc));
+CDialogManager::CDialogManager(CWorkspace& ws):m_refWorkspace(ws){
+	m_aCommands.push_back(new CDlgCommand ("Quit"));
+}
+CDialogManager::~CDialogManager(void) {}
+void CDialogManager::RegisterCommand(const char* sName, ptDlgCommandFunc pFunc) {
+	m_aCommands.push_back(new CDlgCommand(sName, pFunc));
+}
+void CDialogManager::Run() {
+	int nCommand = 666;
+	while (nCommand) {
+		for (size_t i = 0; i < m_aCommands.size(); i++)
+			cout << i << " - " << m_aCommands[i]->GetName() << endl;
+		cout << "Enter command:";
+		cin >> nCommand;
+		if ((nCommand > 0) && (nCommand < (int)m_aCommands.size()))
+			m_aCommands[nCommand]->Run(m_refWorkspace);
+		else { break; }
+		system("pause");
+		system("cls");
 	}
-
-	void Run() {
-		int nCommand = 666;
-		while (nCommand) {
-			for (size_t i = 0; i < m_aCommands.size(); i++)
-				cout << i << " - " << m_aCommands[i]->GetName() << endl;
-			cout << "Enter command:";
-			cin >> nCommand;
-			if ((nCommand > 0) && (nCommand < (int)m_aCommands.size()))
-				m_aCommands[nCommand]->Run(m_refWorkspace);
-			else { break; }
-			system("pause");
-			system("cls");
-		}
-	}
-private:
-	vector<CDlgCommand*> m_aCommands;
-	CWorkspace& m_refWorkspace;
-};
+}

@@ -1,8 +1,7 @@
 #pragma once
 #include "CWorkspace.h"
-using namespace  std;
-typedef void (*ptDlgCommandFunc)(CWorkspace& ws);
 
+typedef void (*ptDlgCommandFunc)(CWorkspace& ws);
 class CDlgCommand {
 public:
 	CDlgCommand(const char* sName, ptDlgCommandFunc pFunc = NULL);

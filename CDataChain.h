@@ -5,6 +5,7 @@
 #include <iomanip>
 #include <vector>
 using namespace std;
+
 class CDataChain {
 public:
 	CDataChain(void);
@@ -30,4 +31,9 @@ public:
 class CDataPi :public CDataChain {
 public:
 	void Generate(int nDepth, int nMaxLenght = 0);
+	const char* GetFullString();
+	void Assignment(string str);
+	int Find(const char* sSubStr, int nPos = 0);
+	size_t GetLength();
+	string ChangeString();
 };

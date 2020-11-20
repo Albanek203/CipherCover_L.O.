@@ -1,9 +1,10 @@
 #pragma once
 #include "CDataChain.h"
+
 class CLink {
 public:
 	CLink(CDataChain& refChain);
-	virtual ~CLink(void) {}
+	virtual ~CLink(void);
 	virtual bool Save(ostream& so);
 	virtual bool Load(istream& is);
 	void Assignment_nPos_nSize(int nPos, int nSize);
