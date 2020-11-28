@@ -6,7 +6,10 @@ CDlgCommand::CDlgCommand(const char* sName, ptDlgCommandFunc pFunc) {
 	m_sName = sName;
 	m_pFunc = pFunc;
 }
-CDlgCommand::~CDlgCommand(void) {}
+CDlgCommand::~CDlgCommand(void) {
+	m_sName = nullptr;
+	m_pFunc = nullptr;
+}
 const char* CDlgCommand::GetName() { return m_sName.c_str(); }
 void CDlgCommand::Run(CWorkspace& ws) {	m_pFunc(ws); }
 
